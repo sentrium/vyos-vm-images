@@ -11,6 +11,13 @@
   template:
     src: "templates/debian.list.j2"
     dest: "{{ vyos_install_root }}/etc/apt/sources.list.d/debian.list"
+###
+- name: Add VyOS unified repository keys
+  become: true
+  shell: |
+    wget -qO - https://aws.unified-repo.vyos.net/dev_public.key | chroot {{ vyos_install_root }} apt-key add -
+    wget -qO - https://aws.unified-repo.vyos.net/prod_public.key | chroot {{ vyos_install_root }} apt-key add -
+###
 - name: backup resolv.conf
   become: true
   command: mv {{ vyos_install_root }}/etc/resolv.conf /tmp/resolv.conf
@@ -41,6 +48,12 @@
   file:
     path: "{{ vyos_install_root }}/etc/apt/sources.list.d/debian.list"
     state: absent
+###
+- name: Remove VyOS unified repository dev key
+  become: true
+  shell: |
+    chroot {{ vyos_install_root }} apt-key del '473C 3AC1 209B 5337 4085  855A 4F5F FD45 95F7 302D'
+###   
 - name: restore original resolv.conf
   become: true
   command: mv /tmp/resolv.conf {{ vyos_install_root }}/etc/resolv.conf

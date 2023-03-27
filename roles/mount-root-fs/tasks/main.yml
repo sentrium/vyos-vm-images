@@ -37,3 +37,7 @@
     opts: "noatime,upperdir={{ vyos_rw_dir }},lowerdir={{ vyos_read_root }},workdir={{ vyos_work_dir }}"
     state: mounted
     boot: no
+
+- name: Clear default apt repositories
+  become: true
+  command: truncate -s 0 {{ vyos_install_root }}/etc/apt/sources.list
