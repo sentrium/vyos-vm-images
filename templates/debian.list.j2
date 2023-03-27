@@ -1,14 +1,11 @@
 {% if vyos_version | regex_search('(^1\.2)') %}
-deb http://deb.debian.org/debian jessie main contrib non-free
-deb http://deb.debian.org/debian jessie-updates main contrib non-free
-deb http://security.debian.org/debian-security/ jessie/updates main contrib non-free
-deb http://dev.packages.vyos.net/repositories/crux/vyos crux main
-deb http://dev.packages.vyos.net/repositories/crux/debian crux main
+deb [trusted=yes] https://aws.unified-repo.vyos.net/vyos-crux-{{ vyos_version }}/debian crux main
+deb [trusted=yes] https://aws.unified-repo.vyos.net/vyos-crux-{{ vyos_version }}/vyos crux main
+deb [trusted=yes] http://aws.deb.vyos.io/extended-lts jessie main contrib non-free
+deb [trusted=yes] https://aws.unified-repo.vyos.net/debian-crux-{{ vyos_version }} jessie main
 {% elif vyos_version | regex_search('(^1\.3)') %}
-deb http://deb.debian.org/debian buster main contrib non-free
-deb http://deb.debian.org/debian buster-updates main contrib non-free
-deb http://security.debian.org/debian-security/ buster/updates main contrib non-free
-deb http://dev.packages.vyos.net/repositories/equuleus equuleus main
+deb [trusted=yes] https://aws.unified-repo.vyos.net/vyos-equuleus-{{ vyos_version }} equuleus main
+deb [trusted=yes] https://aws.unified-repo.vyos.net/debian-equuleus-{{ vyos_version }} buster main
 {% else %}
 deb http://deb.debian.org/debian bullseye main contrib non-free
 deb http://deb.debian.org/debian bullseye-updates main contrib non-free
