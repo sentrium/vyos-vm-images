@@ -16,7 +16,7 @@
   tasks:
     - block:
         - include_role:
-            name: '{{ roleinputvar }}'
+            name: "{{ roleinputvar }}"
           loop:
             - install-packages
             - download-iso
@@ -41,7 +41,7 @@
             loop_var: roleinputvar
       rescue:
         - include_role:
-            name: '{{ roleinputvar }}'
+            name: "{{ roleinputvar }}"
           loop:
             - unmount-pre
             - unmount-all
