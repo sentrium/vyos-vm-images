@@ -39,6 +39,8 @@
           loop_control:
             loop_var: roleinputvar
       rescue:
+        - pause:
+            minutes: 10
         - include_role:
             name: "{{ roleinputvar }}"
           loop:
