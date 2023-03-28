@@ -23,3 +23,5 @@
     opts: loop,ro
     state: mounted
     boot: no
+
+- meta: end_play

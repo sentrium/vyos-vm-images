@@ -18,24 +18,24 @@
             - install-packages
             - download-iso
             - mount-iso
-            # - get-version
-            # - create-disk
-            # - setup-root-partition
-            # - install-image
-            # - mount-root-fs
-            # - install-config
-            # - install-grub
-            # - install-persistence-conf
-            # - install-cloud-init-wrapper
-            # - install-guest-agent-wrapper
-            # - install-custom-packages-wrapper
-            # - fstrim
-            # - unmount-pre
-            # - create-pxe-archive
-            # - unmount-all
-            # - qemu-qcow2
-            # - cleanup-ending
-            # - release
+            - get-version
+            - create-disk
+            - setup-root-partition
+            - install-image
+            - mount-root-fs
+            - install-config
+            - install-grub
+            - install-persistence-conf
+            - install-cloud-init-wrapper
+            - install-guest-agent-wrapper
+            - install-custom-packages-wrapper
+            - fstrim
+            - unmount-pre
+            - create-pxe-archive
+            - unmount-all
+            - qemu-qcow2
+            - cleanup-ending
+            - release
           loop_control:
             loop_var: roleinputvar
       rescue:
