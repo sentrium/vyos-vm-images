@@ -38,11 +38,11 @@
             - release
           loop_control:
             loop_var: roleinputvar
-      # rescue:
-      #   - include_role:
-      #       name: "{{ roleinputvar }}"
-      #     loop:
-      #       - unmount-pre
-      #       - unmount-all
-      #     loop_control:
-      #       loop_var: roleinputvar
+      rescue:
+        - include_role:
+            name: "{{ roleinputvar }}"
+          loop:
+            - unmount-pre
+            - unmount-all
+          loop_control:
+            loop_var: roleinputvar

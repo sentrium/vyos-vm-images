@@ -46,7 +46,10 @@
 
 - name: Set vyos_target_drive fact
   set_fact:
-    vyos_target_drive: "{{ loop_device.stdout | regex_replace('^/dev/(loop.*)$', '/dev/mapper/\\1') }}"
+    vyos_target_drive: "{{ loop_device.stdout | regex_replace('^/dev/(loop.*)$', '/dev/mapper/\\1') | tail -n 1 }}"
+
+- debug:
+    var: vyos_target_drive
 
 - name: Create a fileystem on EFI partition
   become: true
