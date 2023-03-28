@@ -24,6 +24,3 @@
     state: mounted
     boot: no
 
-- name: Trust all apt repositories
-  become: true
-  command: cat /dev/null > {{ vyos_install_root }}/etc/apt/sources.list
