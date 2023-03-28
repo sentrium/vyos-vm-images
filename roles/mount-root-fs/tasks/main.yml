@@ -38,10 +38,6 @@
     state: mounted
     boot: no
 
-- name: Wait for mounting...
-  pause:
-    seconds: 10
-
 - name: Clear default apt repositories
   become: true
-  command: cat /dev/null > {{ vyos_install_root }}/etc/apt/sources.list
+  command: truncate -s 0 {{ vyos_install_root }}/etc/apt/sources.list
