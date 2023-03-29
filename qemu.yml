@@ -15,8 +15,6 @@
         - include_role:
             name: "{{ roleinputvar }}"
           loop:
-            - unmount-pre
-            - unmount-all
             - install-packages
             - download-iso
             - mount-iso
