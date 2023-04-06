@@ -15,8 +15,8 @@
 - name: Add VyOS unified repository keys
   become: true
   shell: |
-    wget -qO - https://aws.unified-repo.vyos.net/dev_public.key | chroot apt-key add -
-    wget -qO - https://aws.unified-repo.vyos.net/prod_public.key | chroot apt-key add -
+    wget -qO - https://aws.unified-repo.vyos.net/dev_public.key | chroot {{ vyos_install_root }} apt-key add -
+    wget -qO - https://aws.unified-repo.vyos.net/prod_public.key | chroot {{ vyos_install_root }} apt-key add -
 ###
 - name: backup resolv.conf
   become: true
@@ -48,7 +48,7 @@
 - name: Remove VyOS unified repository dev key
   become: true
   shell: |
-    chroot apt-key del '473C 3AC1 209B 5337 4085  855A 4F5F FD45 95F7 302D'
+    chroot {{ vyos_install_root }} apt-key del '473C 3AC1 209B 5337 4085  855A 4F5F FD45 95F7 302D'
 ###
 - name: Create cfg.d dir
   become: true
