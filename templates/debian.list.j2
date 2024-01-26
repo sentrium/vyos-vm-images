@@ -7,8 +7,8 @@ deb [trusted=yes] https://aws.unified-repo.vyos.net/debian-crux-{{ vyos_version 
 deb [trusted=yes] https://aws.unified-repo.vyos.net/vyos-equuleus-{{ vyos_version }} equuleus main
 deb [trusted=yes] https://aws.unified-repo.vyos.net/debian-equuleus-{{ vyos_version }} buster main
 {% else %}
-deb http://deb.debian.org/debian bullseye main contrib non-free
-deb http://deb.debian.org/debian bullseye-updates main contrib non-free
-deb http://deb.debian.org/debian-security/ bullseye-security main contrib non-free
+deb http://deb.debian.org/debian bookworm main contrib non-free
+deb http://deb.debian.org/debian bookworm-updates main contrib non-free
+deb http://deb.debian.org/debian-security/ bookworm-security main contrib non-free
 deb http://dev.packages.vyos.net/repositories/current current main
 {% endif %}

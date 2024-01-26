@@ -4,11 +4,11 @@
 
 ## Requirements
 
-You need a machine with at least 20 GB free space with Debian 10 (bare-metal, virtual, Docker container with --privileged flag). Also, you need to install ansible and python packages:
+You need a machine with at least 20 GB free space with Debian 10 (bare-metal, virtual, Docker container with --privileged flag). Also, you need to install ansible and python3 packages:
 
 ```
 sudo apt update
-sudo apt install -y ansible python
+sudo apt install -y ansible python3
 ```
 
 If you want to build an OVA image, you also need `ovftool` from VMware. It should be downloaded from the [VMware site](https://code.vmware.com/tool/ovf). Also, you need a private key to sign an OVA file. It can be generated with the next command:
@@ -22,7 +22,26 @@ All other requirements will be installed by ansible-playbook.
 
 ## Prepare
 
-You need to copy the ISO image with VyOS to /tmp/vyos.iso before running ansible-playbook. Resulting images also will be located inside /tmp/ directory.
+You need to copy the ISO image with VyOS to `/tmp/vyos.iso` before running ansible-playbook. Resulting images also will be located inside `/tmp/` directory.
+
+### Docker
+The Dockerfile has all required dependencies.
+1. Download the `Dockerfile`
+```
+wget https://raw.githubusercontent.com/vyos/vyos-vm-images/current/Dockerfile
+```
+2. Build local image with name `vyos-vm-images` (only if you do not have it)
+```
+docker build --tag vyos-vm-images:latest -f ./Dockerfile .
+```
+3. Start and connect to the container:
+```shell
+docker run --rm -it --privileged -v $(pwd):/vm-build -v $(pwd)/images:/images -w /vm-build vyos-vm-images:latest bash
+```
+4. Clone repo
+```
+git clone https://github.com/vyos/vyos-vm-images.git && cd vyos-vm-images
+```
 
 ## Supported Platforms
 
@@ -144,6 +163,12 @@ You need to copy the ISO image with VyOS to /tmp/vyos.iso before running ansible
     -e custom_packages=true
     ```
 
+- Copy custom files. All files from inside the `files/custom_files/` directory will be copied to the target filesystem recursively:
+
+    ```
+    -e custom_files=true
+    ```
+
 - Enable DHCP on eth0 (default: `false`):
 
     ```
@@ -154,4 +179,10 @@ You need to copy the ISO image with VyOS to /tmp/vyos.iso before running ansible
 
     ```
     -e enable_ssh=true
+    ```
+
+- Remove `login` from configuration. Unlike `keep_user`, this option will completely remove `system login` from configuration.
+
+    ```
+    -e without_login=true
     ```
