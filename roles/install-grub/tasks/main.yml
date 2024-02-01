@@ -30,6 +30,7 @@
       fstype: vfat
       state: mounted
       boot: no
+      fstab: /tmp/fstab
   when: partition_num_efi is defined
 
 - name: Install GRUB in the boot sector of {{ vyos_target_drive }}

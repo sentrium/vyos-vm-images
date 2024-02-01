@@ -6,6 +6,7 @@
     fstype: iso9660
     opts: loop,ro
     state: mounted
+    fstab: /tmp/fstab
     boot: no
 
 - name: Verify checksums of all the files in the ISO image
@@ -22,5 +23,6 @@
     fstype: squashfs
     opts: loop,ro
     state: mounted
+    fstab: /tmp/fstab
     boot: no
 

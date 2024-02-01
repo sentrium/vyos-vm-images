@@ -73,5 +73,6 @@
     src: "{{ vyos_target_drive }}p{{ partition_num_root }}"
     fstype: "{{ vyos_root_fstype }}"
     state: mounted
+    fstab: /tmp/fstab
     opts: discard
     boot: no
