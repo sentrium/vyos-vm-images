@@ -6,6 +6,7 @@
     src: "/{{ item }}"
     fstype: none
     state: unmounted
+    fstab: /tmp/fstab
   with_items: [ 'sys', 'proc', 'dev' ]
 
 - name: Unmount {{ vyos_install_root }}/sys, {{ vyos_install_root }}/proc, {{ vyos_install_root }}/dev
@@ -15,4 +16,5 @@
     src: "/{{ item }}"
     fstype: none
     state: absent
+    fstab: /tmp/fstab
   with_items: [ 'sys', 'proc', 'dev' ]

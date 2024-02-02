@@ -61,4 +61,5 @@
       fstype: vfat
       state: absent
       boot: no
+      fstab: /tmp/fstab
   when: partition_num_efi is defined

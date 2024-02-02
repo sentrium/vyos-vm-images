@@ -7,6 +7,7 @@
     src: "{{ vyos_write_root }}"
     fstype: none
     state: unmounted
+    fstab: /tmp/fstab
 
 - name: Unmount {{ vyos_install_root }}/boot
   become: true
@@ -15,6 +16,7 @@
     src: "{{ vyos_write_root }}"
     fstype: none
     state: absent
+    fstab: /tmp/fstab
 
 - name: Unmount {{ vyos_install_root }}
   become: true
@@ -23,6 +25,7 @@
     src: overlayfs
     fstype: overlayfs
     state: absent
+    fstab: /tmp/fstab
 
 - name: Unmount {{ vyos_read_root }}
   become: true
@@ -31,12 +34,14 @@
     src: "{{ vyos_write_root }}/boot/{{ vyos_version }}/{{ vyos_version }}.squashfs"
     fstype: squashfs
     state: absent
+    fstab: /tmp/fstab
 
 - name: Unmount {{ vyos_write_root }}
   become: true
   mount:
     name: "{{ vyos_write_root }}"
     state: absent
+    fstab: /tmp/fstab
 
 - name: Check if the raw image file exists
   stat:
@@ -68,6 +73,8 @@
     src: "{{ vyos_squashfs_image }}"
     fstype: squashfs
     state: absent
+    fstab: /tmp/fstab
+
 
 - name: Unmount {{ vyos_cd_root }}
   become: true
@@ -76,3 +83,5 @@
     src: "{{ vyos_iso_local }}"
     fstype: iso9660
     state: absent
+    fstab: /tmp/fstab
+
